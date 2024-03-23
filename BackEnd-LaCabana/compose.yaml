@@ -1,0 +1,53 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker compose reference guide at
+# https://docs.docker.com/compose/compose-file/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+version: "3"
+services:
+  server:
+    build:
+      context: .
+    environment:
+      - NODE_ENV=production
+      - U_USER=usuario_lacabana
+      - U_PASSWORD=la-cabana-2023
+      - P_USER=ver_p_lacabana
+      - P_PASSWORD=productos-la-cabana-2023
+      - PGHOST=db
+      - PGPORT=5432
+      - PGDATABASE=db_la_cabana
+      - EMAIL_HOST=smtp.office365.com
+      - EMAIL_PORT=587
+      - EMAIL_USER=calejandrolg99@hotmail.com
+      - EMAIL_PASSWORD=4Calejandrolg
+      - TOKEN_SECRET=la-cabana-2023
+    ports:
+      - 3002:3002
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  db:
+    image: postgres:14.9
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db_la_cabana
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - ./FOTOPRODUCTOS:/var/lib/postgresql/FOTOPRODUCTOS
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+volumes:
+  db_data:
+
+networks:
+  mynetwork:

@@ -1,0 +1,59 @@
+version: "3"
+services:
+  server:
+    build:
+      context: ./BackEnd-LaCabana
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - U_USER=usuario_lacabana
+      - U_PASSWORD=la-cabana-2023
+      - P_USER=ver_p_lacabana
+      - P_PASSWORD=productos-la-cabana-2023
+      - PGHOST=db
+      - PGPORT=5432
+      - PGDATABASE=db_la_cabana
+      - EMAIL_HOST=c1811366.ferozo.com
+      - EMAIL_PORT=465
+      - EMAIL_USER=contacto@lacteoslacabana.com
+      - EMAIL_PASSWORD=d3/tx9s7yM
+      - TOKEN_SECRET=la-cabana-2023
+    ports:
+      - 3002:3002
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  frontend:
+    build:
+      context: ./FrontEnd-LaCabana
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_SERVER=192.168.100.169 #Direccion IP de la maquina que corre el servidor
+    ports:
+      - 3001:3001
+    links:
+      - server
+
+  db:
+    image: postgres:14.9
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db_la_cabana
+    volumes:
+      - ./BackEnd-LaCabana/scripts:/docker-entrypoint-initdb.d
+      - ./BackEnd-LaCabana/FOTOPRODUCTOS:/var/lib/postgresql/FOTOPRODUCTOS
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - mynetwork
+
+volumes:
+  db_data:
+
+networks:
+  mynetwork:
