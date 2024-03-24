@@ -49,6 +49,14 @@ export default function NavBar() {
     navigate("/seccion/postulate");
   };
 
+  const handleLoginClick = () => {
+    navigate("/seccion/login");
+  };
+
+  const handleCompraClick = () => {
+    navigate("/seccion/compra");
+  };
+
   return (
     <AppBar position="static" elevation={0} sx={{ backgroundColor: "#0D7377" }}>
       <Container maxWidth="xl">
@@ -63,12 +71,15 @@ export default function NavBar() {
             </CustomIconButton>
             <CustomButton
               sx={{ color: "#fff" }}
-              onClick={handleQuienesSomosClick}
-            >
+              onClick={handleQuienesSomosClick}>
               ¿Quiénes Somos?
             </CustomButton>
             <CustomButton sx={{ color: "#fff" }} onClick={handleProductosClick}>
               Nuestros Productos
+            </CustomButton>
+
+            <CustomButton sx={{ color: "#fff" }} onClick={handleCompraClick}>
+              Compras
             </CustomButton>
             <CustomButton
               sx={{ color: "#fff" }}
@@ -79,6 +90,10 @@ export default function NavBar() {
             <CustomButton sx={{ color: "#fff" }} onClick={handlePostulateClick}>
               Postúlate
             </CustomButton>
+            <CustomButton sx={{ color: "#fff" }} onClick={handleLoginClick}>
+              Login
+            </CustomButton>
+
           </RootBox>
         </Toolbar>
       </Container>

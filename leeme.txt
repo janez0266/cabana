@@ -1,3 +1,86 @@
+#################### Instalar docker
 Para crear los contenedores necesarios, se debe ejecutar desde la raiz del proyecto:
 >docker compose up
 
+################## Subir a github
+1.- Crear proyecto en github
+2.- subir el proyecto
+abrir el cmd y colocarse en la raiz del proyecto. ejecutar:
+
+git init
+
+git add .
+
+git commit -m "first commit"
+
+git remote add origin https://github.com/janez0266/cabana.git
+
+git pull origin master (En caso que hayan archivos en el repositorio de github)
+
+git push -u origin master
+
+
+Subir proyecto a Docker Play
+1.- Entramos a Docker Play
+2.- Add new instance
+3.- En la terminal escribimos 
+    git clone https://github.com/janez0266/cabana
+4.- entramos en la carpeta descargada y ejecutamos
+    cd cabana    
+    docker compose up
+
+
+
+
+########################################## Powershell
+$j = Invoke-WebRequest 'http://localhost:3002/products' | ConvertFrom-Json
+$j | Out-GridView
+
+################## Proyecto modificaciones
+Agregar rutas > frontend/src/pages/app.Js
+Agregar al menu --> navbar.jsx
+Visualizar datos (Claves y correos) --> backend/compose.yaml
+    server:
+        environment:
+        - NODE_ENV=production
+        - U_USER=usuario_lacabana
+        - U_PASSWORD=la-cabana-2023
+        - P_USER=ver_p_lacabana
+        - P_PASSWORD=productos-la-cabana-2023
+        - PGHOST=db
+        - PGPORT=5432
+        - PGDATABASE=db_la_cabana
+        - EMAIL_HOST=smtp.office365.com
+        - EMAIL_PORT=587
+        - EMAIL_USER=calejandrolg99@hotmail.com
+        - EMAIL_PASSWORD=4Calejandrolg
+        - TOKEN_SECRET=la-cabana-2023
+        ports:
+        - 3002:3002
+    db:
+      environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db_la_cabana
+Visualizar datos --> backend/.env
+    U_USER=usuario_lacabana
+    U_PASSWORD=la-cabana-2023
+
+    P_USER=ver_p_lacabana
+    P_PASSWORD=productos-la-cabana-2023
+
+    PGHOST=localhost
+    PGPORT=5432
+    PGDATABASE=db_la_cabana
+
+    EMAIL_HOST=smtp-mail.outlook.com
+    EMAIL_PORT=587
+    EMAIL_USER=calejandrolg99@hotmail.com
+    EMAIL_PASSWORD=4Calejandrolg
+
+    TOKEN_SECRET=la-cabana-2023      
+    
+Visualizar las apis --> backend/src/app.js
+    http://localhost:3002/products
+    http://localhost:3002/products/by-category
+    http://localhost:3002/products/presentations
