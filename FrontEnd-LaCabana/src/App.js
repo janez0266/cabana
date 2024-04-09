@@ -17,8 +17,6 @@ function App() {
         <Route path="/seccion/contactanos" element={<Contactanos />} />
         <Route path="/seccion/postulate" element={<Postulate />} />
         <Route path="/seccion/NuestrosProductos" element={<NuestrosProductos />} />
-        <Route path="/seccion/login" element={<Login/>} />
-        <Route path="/seccion/Compra" element={<Compra />} />
         <Route
           path="/seccion/nuestros-productos"
           element={<NuestrosProductos />}
