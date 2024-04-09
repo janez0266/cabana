@@ -77,10 +77,6 @@ export default function NavBar() {
             <CustomButton sx={{ color: "#fff" }} onClick={handleProductosClick}>
               Nuestros Productos
             </CustomButton>
-
-            <CustomButton sx={{ color: "#fff" }} onClick={handleCompraClick}>
-              Compras
-            </CustomButton>
             <CustomButton
               sx={{ color: "#fff" }}
               onClick={handleContactanosClick}
@@ -90,9 +86,7 @@ export default function NavBar() {
             <CustomButton sx={{ color: "#fff" }} onClick={handlePostulateClick}>
               Postúlate
             </CustomButton>
-            <CustomButton sx={{ color: "#fff" }} onClick={handleLoginClick}>
-              Login
-            </CustomButton>
+
 
           </RootBox>
         </Toolbar>
