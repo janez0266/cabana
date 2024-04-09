@@ -31,7 +31,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
-      - REACT_APP_SERVER=192.168.100.169 #Direccion IP de la maquina que corre el servidor
+      - REACT_APP_SERVER=192.168.0.18 #Direccion IP de la maquina que corre el servidor
     ports:
       - 3001:3001
     links:
